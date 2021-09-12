@@ -23,6 +23,7 @@
     "start": "react-app-rewired start",
     "build": "react-app-rewired build",
     "eject": "react-scripts eject"
+    "deploy": "yarn build && cp social.png build/"
   },
   "eslintConfig": {
     "extends": [
