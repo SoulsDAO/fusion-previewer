@@ -17,6 +17,7 @@ import { SoulPicker } from './SoulPicker';
 import { Soul } from './Soul';
 import { fuseSouls } from './Fusion';
 import { SoulCanvas } from './SoulCanvas';
+import { FusionResult } from './Types';
 
 interface TabPanelProps {
     children?: React.ReactNode;
@@ -96,7 +97,7 @@ function FusionPreview() {
 
     const [leftSoul, setLeftSoul] = React.useState<Soul>();
     const [rightSoul, setRightSoul] = React.useState<Soul>();
-    const [fusedSouls, setFusedSouls] = React.useState<Soul[]>([]);
+    const [fusedSouls, setFusedSouls] = React.useState<FusionResult[]>([]);
 
     React.useEffect(() => {
         setFusedSouls(fuseSouls(leftSoul, rightSoul));
@@ -148,12 +149,13 @@ function FusionPreview() {
                         root: classes.imageContainer,
                     }}
                 >
-                    {fusedSouls.map((soul, idx) => (
+                    {fusedSouls.map((fusion, idx) => (
                         <ImageListItem
                             key={`fuse-canvas-${idx}`}
                         >
                             <SoulCanvas
-                                soul={soul}
+                                soul={fusion.soul}
+                                probability={fusion.probability}
                                 id={`fuse-canvas-${idx}`}
                             />
                         </ImageListItem>

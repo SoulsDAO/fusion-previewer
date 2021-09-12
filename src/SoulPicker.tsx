@@ -13,7 +13,7 @@ import {
     eyes,
     cheeks,
 } from './Images';
-import { Attribute } from './Types';
+import { Attribute, Rarity } from './Types';
 import { Soul } from './Soul';
 
 export interface ISoulPickerProps {
@@ -58,10 +58,10 @@ export function pickRandomAttribute(items: any, allowEmpty?: boolean, emptyProba
             const random = Math.random();
 
             if (random < emptyProbability) {
-                return { name: 'None', image: { default: '' }};
+                return { name: 'None', image: { default: '' }, rarity: Rarity.None };
             }
         } else {
-            attributes.push({ name: 'None', image: { default: '' }});
+            attributes.push({ name: 'None', image: { default: '' }, rarity: Rarity.None });
         }
     }
 
@@ -86,6 +86,7 @@ export function SoulPicker(props: ISoulPickerProps) {
         arr.unshift({
             name: 'None',
             image: { default: '' },
+            rarity: Rarity.None,
         })
     }
 

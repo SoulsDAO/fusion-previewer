@@ -6,12 +6,28 @@ import { Soul } from './Soul';
 export interface ISoulCanvasProps {
     soul: Soul;
     id: string;
+    probability: number;
 }
 
 export function SoulCanvas(props: ISoulCanvasProps) {
     const [canvas, setCanvas] = React.useState<fabric.StaticCanvas>();
 
-    const { id, soul } = props;
+    const { id, soul, probability } = props;
+
+    const text = React.useMemo(() => (
+        new fabric.Text(`${(probability * 100).toFixed(3)}%`, {
+            textAlign: 'right',
+            originX: 'right',
+            originY: 'top',
+            left: 255,
+            fontSize: 26,
+            fill: '#e6e6e6',
+            fontWeight: 800,
+            strokeWidth: 1,
+            stroke: '#000000',
+            fontFamily: 'Roboto',
+        })
+    ), [probability]);
 
     React.useEffect(() => {
         const canvasObj = new fabric.StaticCanvas(id, {
@@ -23,11 +39,16 @@ export function SoulCanvas(props: ISoulCanvasProps) {
     }, [id]);
 
     React.useEffect(() => {
-        if (canvas) {
-            soul.setCanvas(canvas);
-            soul.draw();
-        }
-    }, [canvas, soul]);
+        const drawData = async () => {
+            if (canvas) {
+                soul.setCanvas(canvas);
+                await soul.draw();
+                canvas.add(text);
+            }
+        };
+
+        drawData();
+    }, [canvas, soul, text]);
 
     return (
         <canvas
