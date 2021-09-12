@@ -13,4 +13,8 @@ Also allows generating arbitrary souls for profile pictures, dream souls, or mem
 
 ## Running
 
+### Dev mode
 * `yarn start`
+
+### Production
+* `yarn build`
