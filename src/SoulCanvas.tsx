@@ -15,7 +15,7 @@ export function SoulCanvas(props: ISoulCanvasProps) {
     const { id, soul, probability } = props;
 
     const text = React.useMemo(() => (
-        new fabric.Text(`${(probability * 100).toFixed(3)}%`, {
+        new fabric.Text(`${(probability * 100).toFixed(4)}%`, {
             textAlign: 'right',
             originX: 'right',
             originY: 'top',
