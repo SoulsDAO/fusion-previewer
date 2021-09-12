@@ -1,6 +1,5 @@
 import { Soul } from './Soul';
 import { Attribute, FusionResult, Rarity } from './Types';
-import { shuffle } from './Utilities';
 
 const bodyDistanceMap = new Map([
     ['White', 0],
@@ -135,8 +134,6 @@ export function fuseSouls(a?: Soul, b?: Soul): FusionResult[] {
 
     const combinations = [];
 
-    let totalProbability = 0;
-
     for (const background of getCombos(a.background, b.background)) {
         for (const body of getBodyCombos(a.body, b.body)) {
             for (const eye of getCombos(a.eyes, b.eyes)) {
@@ -153,8 +150,6 @@ export function fuseSouls(a?: Soul, b?: Soul): FusionResult[] {
                                         glass.probability *
                                         hair.probability *
                                         hand.probability;
-
-                                    totalProbability += probability;
 
                                     combinations.push({
                                         soul: new Soul(
