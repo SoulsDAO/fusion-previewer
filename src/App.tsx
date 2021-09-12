@@ -179,11 +179,13 @@ function AboutInfo() {
                 This application is not made by the SolSouls developers. All image assets belong to the SolSouls developers.
             </Typography>
             <Typography>
-                My intepretation of the fusion mechanics is taken from
+                My intepretation of the fusion mechanics and resulting probabilities is taken from
                 <Link href={'https://medium.com/@solanasolsouls/introducing-soulfusion-20762394e5ed'}>
                     {` here `}
                 </Link>
-                and possibly may be incorrect. Always verify before purchasing.
+            </Typography>
+            <Typography>
+                and possibly may be incorrect. Always verify before purchasing or fusing.
             </Typography>
             <Typography style={{
                 marginTop: '20px',
