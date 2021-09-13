@@ -2,7 +2,7 @@ import { fabric } from 'fabric';
 import { Attribute } from './Types';
 
 export class Soul {
-    private canvas?: fabric.StaticCanvas;
+    private canvas?: fabric.Canvas | fabric.StaticCanvas;
 
     constructor(
         public background: Attribute,
@@ -19,13 +19,14 @@ export class Soul {
     private async loadImage(base64: string) {
         return new Promise<void>((res) => {
             fabric.Image.fromURL(base64, (img) => {
+                img.selectable = false;
                 this?.canvas?.add(img);
                 res();
             });
         });
     }
 
-    public async setCanvas(canvas: fabric.StaticCanvas) {
+    public async setCanvas(canvas: fabric.Canvas | fabric.StaticCanvas) {
         this.canvas = canvas;
     }
 
@@ -35,6 +36,10 @@ export class Soul {
         }
 
         await this.canvas.clear();
+
+        if ((this.canvas as any).selection) {
+            (this.canvas as any).selection = false;
+        }
 
         for (const item of [
             this.background,

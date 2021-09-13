@@ -103,13 +103,53 @@ function FusionPreview() {
     const [leftSoul, setLeftSoul] = React.useState<Soul>();
     const [rightSoul, setRightSoul] = React.useState<Soul>();
     const [fusedSouls, setFusedSouls] = React.useState<FusionResult[]>([]);
+    const [probabilitySum, setProbabilitySum] = React.useState<number>(0);
+    const [selectedImages, setSelectedImages] = React.useState<number[]>([]);
 
     React.useEffect(() => {
+        setSelectedImages([]);
+        setProbabilitySum(0);
         setFusedSouls(fuseSouls(leftSoul, rightSoul));
     }, [
         leftSoul,
         rightSoul,
     ]);
+
+    React.useEffect(() => {
+        let probability = 0;
+
+        for (const selected of selectedImages) {
+            probability += fusedSouls[selected].probability;
+        }
+
+        setProbabilitySum(probability);
+    }, [
+        selectedImages,
+        fusedSouls,
+    ]);
+
+    function handleSelected(
+        canvasIndex: number,
+        probability: number) {
+
+        setSelectedImages((images) => {
+            const newImages = [...images];
+
+            const index = newImages.indexOf(canvasIndex);
+
+            /* If the canvas doesn't exist in the current selected images map,
+             * then we are toggling it on. */
+            const selected = index === -1;
+
+            if (selected) {
+                newImages.push(canvasIndex);
+            } else {
+                newImages.splice(index, 1);
+            }
+
+            return newImages;
+        });
+    }
 
     return (
         <div style={{
@@ -141,6 +181,9 @@ function FusionPreview() {
                     onSoulChange={setRightSoul}
                 />
             </div>
+            <Typography>
+                Combined probability of selected items: {`${(Math.abs(probabilitySum * 100)).toFixed(4)}%`}
+            </Typography>
             <div style={{
                 marginTop: '30px',
                 display: 'flex',
@@ -163,7 +206,10 @@ function FusionPreview() {
                             <SoulCanvas
                                 soul={fusion.soul}
                                 probability={fusion.probability}
+                                index={idx}
                                 id={`fuse-canvas-${idx}`}
+                                selected={selectedImages.includes(idx)}
+                                onSelectedChange={handleSelected}
                             />
                         </ImageListItem>
                     ))}
