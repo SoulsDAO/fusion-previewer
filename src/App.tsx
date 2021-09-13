@@ -248,12 +248,6 @@ function AboutInfo() {
                     {` here.`}
                 </Link>
             </Typography>
-            <Typography>
-                This website is not designed for mobile. It displays terribly, and generating between 32 and 256
-            </Typography>
-            <Typography>
-                images on individual canvases is quite taxing for a mobile. Please view on desktop for the best experience.
-            </Typography>
             <Typography style={{
                 marginTop: '20px',
             }}>
