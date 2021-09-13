@@ -181,6 +181,7 @@ export function SoulPicker(props: ISoulPickerProps) {
                 flexDirection: 'row',
                 alignItems: 'start',
                 justifyContent: 'center',
+                padding: '1rem',
             }}>
                 {props.includeConfigurationOptions &&
                     <div
