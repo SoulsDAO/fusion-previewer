@@ -34,7 +34,12 @@ const theme = createTheme({
 
 const useStyles = makeStyles({
     imageContainer: {
-        width: '1536px',
+        justifyContent: 'center',
+        flexWrap: 'wrap',
+    },
+    imageItem: {
+        width: '256px!important',
+        margin: '1px',
     }
 });
 
@@ -118,18 +123,19 @@ function FusionPreview() {
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'center',
+                    flexWrap: 'wrap',
                 }}
             >
                 <SoulPicker
                     id={'1'}
-                    configRightStyles={{ marginRight: '15px' }}
+                    configRightStyles={{ marginRight: '0px' }}
                     includeRandomButton={true}
                     includeConfigurationOptions={true}
                     onSoulChange={setLeftSoul}
                 />
                 <SoulPicker
                     id={'2'}
-                    configLeftStyles={{ marginLeft: '15px' }}
+                    configLeftStyles={{ marginLeft: '0px' }}
                     includeRandomButton={true}
                     includeConfigurationOptions={true}
                     onSoulChange={setRightSoul}
@@ -152,6 +158,7 @@ function FusionPreview() {
                     {fusedSouls.map((fusion, idx) => (
                         <ImageListItem
                             key={`fuse-canvas-${idx}`}
+                            classes={{root: classes.imageItem}}
                         >
                             <SoulCanvas
                                 soul={fusion.soul}
