@@ -49,7 +49,7 @@ export function SoulCanvas(props: ISoulCanvasProps) {
 
         setCanvas(canvasObj);
     // eslint-disable-next-line
-    }, [id, onSelectedChange]);
+    }, [id]);
 
     React.useEffect(() => {
         const drawData = async () => {
