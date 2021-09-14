@@ -48,8 +48,8 @@ export class Soul {
             this.mouth,
             this.cheeks,
             this.glasses,
-            this.hair,
             this.hands,
+            this.hair,
         ]) {
             if (item.image.default === '') {
                 continue;
