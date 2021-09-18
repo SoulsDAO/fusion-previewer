@@ -7,7 +7,7 @@ Also allows generating arbitrary souls for profile pictures, dream souls, or mem
 ![Website Screenshot](./screenshot.png?raw=true')
 
 ## Install
-* `git clone https://github.com/zpalmtree/solsouls-fusion-previewer.git`
+* `git clone https://github.com/SoulsDAO/fusion-previewer.git`
 * `git submodule update --init --recursive`
 * `yarn install`
 
